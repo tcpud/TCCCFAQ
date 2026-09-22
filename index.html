@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recreation Facility FAQ | Tahoe City PUD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --lake:#0F3B57;
+  --lake-2:#1D5C82;
+  --pine:#2F5D4A;
+  --glacier:#E4EFF4;
+  --granite:#5B6670;
+  --ink:#16222B;
+  --line:#CFDCE3;
+  --page:#FFFFFF;
+  --panel:#F5F9FB;
+  --chip-on-text:#FFFFFF;
+  --focus:#F2B33D;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --lake:#8CC4E3; --lake-2:#A9D5EC; --pine:#8FC7AE; --glacier:#17303F;
+    --granite:#A3B1BC; --ink:#E6EEF2; --line:#2B4556; --page:#0D1C25;
+    --panel:#12252F; --chip-on-text:#0D1C25;
+  }
+}
+:root[data-theme="dark"]{
+  --lake:#8CC4E3; --lake-2:#A9D5EC; --pine:#8FC7AE; --glacier:#17303F;
+  --granite:#A3B1BC; --ink:#E6EEF2; --line:#2B4556; --page:#0D1C25;
+  --panel:#12252F; --chip-on-text:#0D1C25;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--page);color:var(--ink)}
+
+/* Everything scoped under .tcfaq so it can drop into a Drupal page safely */
+.tcfaq{
+  font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:1.0625rem;line-height:1.6;color:var(--ink);
+  max-width:48rem;margin:0 auto;padding:2.5rem 1.25rem 4rem;
+}
+.tcfaq *:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.tcfaq h1{font-size:clamp(1.75rem,4.5vw,2.5rem);line-height:1.15;font-weight:800;color:var(--lake);margin:0 0 .75rem;letter-spacing:-0.01em}
+.tcfaq .intro{margin:0 0 2rem;color:var(--granite);max-width:38rem}
+
+/* Search */
+.tcfaq .search{position:relative;margin-bottom:1rem}
+.tcfaq .search label{display:block;font-weight:600;margin-bottom:.35rem}
+.tcfaq .search input{
+  width:100%;font:inherit;padding:.8rem 1rem .8rem 2.75rem;border:2px solid var(--line);
+  border-radius:10px;background:var(--page);color:var(--ink);
+}
+.tcfaq .search input:focus{border-color:var(--lake-2);outline:none}
+.tcfaq .search svg{position:absolute;left:.9rem;bottom:.95rem;width:1.1rem;height:1.1rem;color:var(--granite)}
+
+/* Theme filter */
+.tcfaq .themes{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.75rem;padding:0;border:0}
+.tcfaq .themes legend{font-weight:600;margin-bottom:.5rem;padding:0}
+.tcfaq .chip{
+  font:inherit;font-size:.95rem;font-weight:600;cursor:pointer;
+  padding:.45rem .9rem;border-radius:999px;border:2px solid var(--line);
+  background:var(--page);color:var(--lake);display:inline-flex;align-items:center;gap:.45rem;
+}
+.tcfaq .chip:hover{border-color:var(--lake-2)}
+.tcfaq .chip[aria-pressed="true"]{background:var(--lake);border-color:var(--lake);color:var(--chip-on-text)}
+.tcfaq .chip .n{font-weight:500;opacity:.8;font-size:.85em}
+
+/* Results bar */
+.tcfaq .bar{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;
+  border-bottom:2px solid var(--lake);padding-bottom:.5rem;margin-bottom:.25rem}
+.tcfaq .count{margin:0;font-weight:600;color:var(--granite);font-size:.95rem}
+.tcfaq .linkbtn{font:inherit;font-size:.95rem;font-weight:600;background:none;border:0;padding:0;color:var(--lake-2);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+/* FAQ list */
+.tcfaq ul.list{list-style:none;margin:0;padding:0}
+.tcfaq .item{border-bottom:1px solid var(--line)}
+.tcfaq .q{
+  width:100%;text-align:left;font:inherit;font-weight:600;font-size:1.05rem;color:var(--ink);
+  background:none;border:0;padding:1.1rem 2.5rem 1.1rem 0;cursor:pointer;position:relative;line-height:1.4;
+}
+.tcfaq .q:hover{color:var(--lake-2)}
+.tcfaq .q::after{
+  content:"";position:absolute;right:.5rem;top:1.35rem;width:.6rem;height:.6rem;
+  border-right:2.5px solid var(--lake-2);border-bottom:2.5px solid var(--lake-2);transform:rotate(45deg);
+  transition:transform .2s ease;
+}
+.tcfaq .q[aria-expanded="true"]::after{transform:rotate(-135deg);top:1.6rem}
+.tcfaq .tag{display:inline-block;font-size:.8rem;font-weight:600;color:var(--pine);margin-top:.3rem}
+.tcfaq .a{padding:0 0 1.25rem;max-width:40rem}
+.tcfaq .a p{margin:0 0 .75rem}
+.tcfaq .a a{color:var(--lake-2);text-underline-offset:3px}
+.tcfaq .a .pending{color:var(--granite);font-style:italic}
+.tcfaq .a .copy{font:inherit;font-size:.85rem;color:var(--granite);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.tcfaq .a table{border-collapse:collapse;margin:.25rem 0 .75rem;font-size:.95rem}
+.tcfaq .a th,.tcfaq .a td{text-align:left;padding:.35rem 1.25rem .35rem 0;border-bottom:1px solid var(--line)}
+.tcfaq .a th{font-weight:600}
+.tcfaq .a td.num{font-variant-numeric:tabular-nums;font-weight:600}
+.tcfaq mark{background:var(--glacier);color:inherit;padding:0 .1em;border-radius:2px}
+
+.tcfaq .empty{padding:1.5rem 0;color:var(--granite)}
+
+/* Ask panel */
+.tcfaq .ask{margin:0 0 2rem;background:var(--panel);border:2px solid var(--line);border-left:6px solid var(--pine);border-radius:12px;padding:1.5rem}
+.tcfaq .ask h2{margin:0 0 .35rem;font-size:1.35rem;color:var(--lake);line-height:1.25}
+.tcfaq .ask p.sub{margin:0;color:var(--granite)}
+.tcfaq .ask-head{display:flex;align-items:center;justify-content:space-between;gap:1rem 1.5rem;flex-wrap:wrap}
+.tcfaq .ask-head .send{flex:none}
+.tcfaq #ask-form{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--line)}
+.tcfaq .cancel{margin-left:1rem}
+.tcfaq .field{margin-bottom:1rem}
+.tcfaq .field label{display:block;font-weight:600;margin-bottom:.3rem}
+.tcfaq .field .hint{font-weight:400;color:var(--granite);font-size:.9rem}
+.tcfaq .field input,.tcfaq .field textarea{
+  width:100%;font:inherit;padding:.65rem .8rem;border:2px solid var(--line);border-radius:8px;background:var(--page);color:var(--ink)
+}
+.tcfaq .field textarea{min-height:7rem;resize:vertical}
+.tcfaq .field input:focus,.tcfaq .field textarea:focus{border-color:var(--lake-2);outline:none}
+.tcfaq .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media (max-width:560px){.tcfaq .row{grid-template-columns:1fr}}
+.tcfaq .send{font:inherit;font-weight:700;background:var(--pine);color:#fff;border:0;border-radius:8px;padding:.75rem 1.4rem;cursor:pointer}
+.tcfaq .send:hover{filter:brightness(1.1)}
+:root[data-theme="dark"] .tcfaq .send{color:var(--page)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tcfaq .send{color:var(--page)}}
+.tcfaq .error{color:#B3261E;font-weight:600;margin:.5rem 0 0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tcfaq .error{color:#FFB4AB}}
+.tcfaq .thanks{margin:.75rem 0 0}
+.tcfaq .thanks p{margin:0 0 .35rem;font-weight:600;color:var(--pine)}
+.tcfaq .thanks p.fallback{font-weight:400;color:var(--ink)}
+.tcfaq .thanks a{color:var(--lake-2);font-weight:600}
+
+.tcfaq .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion: reduce){.tcfaq *{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="tcfaq" id="tcfaq">
+  <h1>Questions about the proposed recreation facility</h1>
+  <p class="intro">These are the questions we heard most often from the community about the indoor gymnasium, aquatic, and combined facility concepts. Answers reflect early planning and may change as the study continues.</p>
+
+  <section class="ask" id="ask" aria-labelledby="ask-title">
+    <div class="ask-head">
+      <div>
+        <h2 id="ask-title">Don't see your question?</h2>
+        <p class="sub">Send it to us. We read every question and update this page as answers become available.</p>
+      </div>
+      <button type="button" class="send" id="ask-open" aria-expanded="false" aria-controls="ask-form">Ask a question</button>
+    </div>
+    <form id="ask-form" novalidate hidden>
+      <div class="field">
+        <label for="ask-q">Your question</label>
+        <textarea id="ask-q" name="question" required></textarea>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="ask-name">Name <span class="hint">(optional)</span></label>
+          <input id="ask-name" name="name" type="text" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="ask-email">Email <span class="hint">(optional, if you'd like a reply)</span></label>
+          <input id="ask-email" name="email" type="email" autocomplete="email">
+        </div>
+      </div>
+      <button type="submit" class="send">Send question</button>
+      <button type="button" class="linkbtn cancel" id="ask-cancel">Cancel</button>
+      <p class="error" id="ask-error" hidden></p>
+      <div class="thanks" id="ask-thanks" hidden>
+        <p>Your email app should open with your question filled in. Press send there to finish.</p>
+        <p class="fallback">If it didn't open, email your question to <a id="ask-addr" href="#"></a>. <button type="button" class="linkbtn" id="ask-copy">Copy my question</button></p>
+      </div>
+    </form>
+  </section>
+
+  <div class="search">
+    <label for="faq-search">Search questions</label>
+    <input id="faq-search" type="search" autocomplete="off" placeholder="Try &ldquo;lap pool&rdquo; or &ldquo;parcel tax&rdquo;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+  </div>
+
+  <fieldset class="themes" id="themes">
+    <legend>Filter by topic</legend>
+  </fieldset>
+
+  <div class="bar">
+    <p class="count" id="count" aria-live="polite"></p>
+    <button type="button" class="linkbtn" id="toggle-all">Expand all</button>
+  </div>
+  <ul class="list" id="list"></ul>
+  <div class="empty" id="empty" hidden>
+    <p>No questions match your search. <button type="button" class="linkbtn" id="ask-from-empty">Send us your question</button> and we'll add an answer.</p>
+  </div>
+
+</main>
+
+<script>
+(function(){
+  /* ============ SETTINGS: edit these ============ */
+  var CONFIG = {
+    // Where "Send question" goes. If formEndpoint is set, the form POSTs there
+    // (e.g. a Drupal Webform, Formspree, or Power Automate HTTP trigger).
+    // Otherwise it opens the visitor's email app addressed to askEmail.
+    formEndpoint: "",
+    askEmail: "info@tcpud.org",
+    emailSubject: "Recreation facility question"
+  };
+
+  var THEMES = [
+    {id:"all",      label:"All topics"},
+    {id:"features", label:"Facility features"},
+    {id:"access",   label:"Access and user fees"},
+    {id:"cost",     label:"Cost and funding"},
+    {id:"voting",   label:"Voting"},
+    {id:"planning", label:"Site and planning"}
+  ];
+
+  /* answer: HTML string, or null for "answer coming soon" */
+  var FAQS = [
+    {id:"use-fee", t:"access", q:"Would there be a separate membership or use fee on top of the parcel tax to actually access the facility?",
+     a:"<p>Yes. The proposed voter-approved tax measure would provide funding for construction of the facility; however, user fees would still be necessary to help offset ongoing operating and maintenance costs. The estimated fee structure would be determined as part of continued planning efforts.</p>"},
+    {id:"lap-pool", t:"features", q:"Would the aquatic facility include a dedicated lap pool, and how many lanes?",
+     a:"<p>The dedicated aquatic facility would include a six-lane lap pool and a 2,500 square foot activity pool. The current combined gymnasium and aquatic facility concept does not include a lap pool.</p>"},
+    {id:"non-residents", t:"access", q:"Would non-residents, visitors, or tourists be able to use the facility, and would they pay a different rate?",
+     a:"<p>The facility would be open to all members of the public. It’s likely that access fees for TCPUD residents would be lower than for non-residents, as is consistent with other TCPUD Parks &amp; Recreation facilities and programs.</p>"},
+    {id:"meeting-space", t:"features", q:"Would the facility include community/multi-purpose space for classes, meetings, or events?",
+     a:"<p>Yes. All three proposed concepts include classroom/meeting space.</p>"},
+    {id:"other-funding", t:"cost", q:"Have alternative funding sources been considered, such as TOT/TBID (tourist tax) revenue, grants, bond measures, or private donations?",
+     a:"<p>TCPUD continuously seeks outside sources of funding for all projects. However, at this early conceptual stage, we cannot plan for or rely on these sources of funding for future construction.</p>"},
+    {id:"rideout", t:"planning", q:"Has renovating or expanding the existing Rideout gymnasium been considered instead of new construction?",
+     a:"<p>Rideout is owned by Tahoe Truckee Unified School District, not TCPUD. As such, TCPUD has no authority or direction over the use of the Rideout site.</p>"},
+    {id:"dollar-hill", t:"planning", q:"How does this proposal differ from the earlier Dollar Hill facility proposal that didn't move forward?",
+     a:"<p>The Dollar Hill facility was proposed as a joint facility with North Tahoe Public Utility District. The effort concluded in late 2024, when the TCPUD and NTPUD Board of Directors determined that, based on voter polling results and projected costs of the project, it was not feasible to move forward with a special tax measure to fund the facility. Learn more about that joint effort here: <a href=\"https://northtahoerec.org/\" target=\"_blank\" rel=\"noopener\">https://northtahoerec.org/</a></p>"},
+    {id:"how-vote", t:"voting", q:"How and when would residents actually vote on this?",
+     a:"<p>A voter-approved parcel tax would need to be approved by a two-thirds majority of registered voters within TCPUD’s service area in both El Dorado and Placer County. We are still in the very early planning stages, and there is no estimate of if/when this project would go to a ballot.</p>"},
+    {id:"traffic", t:"planning", q:"How would this project affect traffic and the Highway 89/Granlibakken intersection?",
+     a:"<p>Traffic impacts would be studied and addressed if/when any of the three facility concepts move forward to design/construction.</p>"},
+    {id:"pickleball", t:"features", q:"Would there be dedicated indoor pickleball courts?",
+     a:"<p>The exact layout of court space has not yet been determined. However, we expect that court space will be configurable to be shared between user groups.</p>"},
+    {id:"second-home", t:"voting", q:"As a second homeowner, would I be able to vote on this measure even though I'd be paying the tax?",
+     a:"<p>Those who are registered to vote within TCPUD’s service area will be able to vote on the measure.</p>"},
+    {id:"combined-no-lap", t:"features", q:"Why does the \"combined\" concept appear to drop the lap pool in favor of a leisure-only pool?",
+     a:null},
+    {id:"fitness", t:"features", q:"Would a fitness area with free weights and cardio machines be included?",
+     a:null},
+    {id:"operating-costs", t:"cost", q:"What are the projected ongoing maintenance and staffing costs, beyond construction?",
+     a:"<p>The current estimates for annual operating costs are $365,000 for the Indoor Gymnasium, $1,030,000 for the Indoor Aquatic Facility, or $935,000 for the Combined Facility.</p>"},
+    {id:"nursery", t:"planning", q:"What happens to the plant nursery currently operating on the proposed site?",
+     a:"<p>The nursery currently leases a portion of the site for its operations. The future of that lease would be evaluated if the project moves forward into design and construction.</p>"},
+    {id:"reduced-rates", t:"access", q:"Are there exemptions or reduced rates planned for seniors, low-income residents, or those on fixed incomes?",
+     a:"<p>The exact rate structure for any of the proposed facilities will be developed as planning efforts continue.</p>"},
+    {id:"incorporation", t:"planning", q:"Would this project be affected by the North Lake Tahoe incorporation effort?",
+     a:"<p>Incorporation will not change how TCPUD provides its water, sewer, or parks and recreation services. However, there is not sufficient information at this time to understand how incorporation efforts may impact outside funding sources.</p>"},
+    {id:"sliding-scale", t:"cost", q:"Could the tax be structured on a sliding scale based on property value instead of a flat rate per parcel?",
+     a:"<p>The exact structure of a voter-approved tax has not yet been determined. Specific details will be developed if/when one of the facility concepts moves forward to planning/design.</p>"},
+    {id:"ice-rink", t:"features", q:"Is an ice rink or hockey facility being considered as part of any concept?",
+     a:"<p>No, an ice facility has not been considered in any of the proposed concepts.</p>"},
+    {id:"youth", t:"features", q:"Would childcare, a children's play area, or youth programming be part of the facility?",
+     a:"<p>Specific programming options have not yet been determined for any of the proposed facility concepts. However, TCPUD would likely conduct some form of youth programming on-site at any of the proposed facilities.</p>"},
+    {id:"tax-amount", t:"cost", q:"How much would the parcel tax cost per property, and how was that amount calculated?",
+     a:"<p>The specific voter-approved parcel tax amount varies by facility type. These initial estimates were calculated based on initial construction cost estimates. These current yearly estimates are $196/parcel for the Indoor Gymnasium, $351/parcel for the Indoor Aquatic Facility, or $424/parcel for the Combine Facility. These are estimates only and are subject to change.</p>"},
+    {id:"indoor-outdoor", t:"features", q:"Would the pool be indoor, outdoor, or a combination of both?",
+     a:"<p>Aquatic facilities would be indoors.</p>"},
+    {id:"over-budget", t:"cost", q:"What happens if the project goes over budget — would that fall on taxpayers?",
+     a:"<p>Any project costs not covered by a voter-approved parcel tax would come from TCPUD’s General Fund. The General Fund is primarily funded by existing TCPUD property tax revenue and parks/recreation user fees.</p>"},
+    {id:"capital-campaign", t:"cost", q:"Would a capital campaign or donor-recognition program be considered to offset construction costs?",
+     a:"<p>TCPUD continuously seeks outside sources of funding for all projects. However, at this early conceptual stage, we cannot plan for or rely on these sources of funding for future construction.</p>"},
+    {id:"renters", t:"cost", q:"Would renters be affected by the parcel tax, and if so, how?",
+     a:"<p>Property owners would pay the voter-approved parcel tax.</p>"},
+    {id:"chlorine", t:"features", q:"Would the pool use chlorine or a saline/saltwater system?",
+     a:"<p>Aquatic facilities would likely use chlorine disinfection.</p>"},
+    {id:"timeline", t:"planning", q:"What is the timeline for design, funding, and construction if this moves forward?",
+     a:"<p>Depending on the timing of a voter-approved parcel tax ballot measure, completion of the facility would not be expected until 2033 at the earliest (source: Board workshop 1/16/26)</p>"}
+  ];
+
+  var PENDING = "<p class=\"pending\">We're working on an answer to this question. Check back soon.</p>";
+  var themeLabel = {}; THEMES.forEach(function(t){ themeLabel[t.id]=t.label; });
+
+  var state = {theme:"all", query:""};
+  var $ = function(id){ return document.getElementById(id); };
+  var list=$("list"), themesEl=$("themes"), countEl=$("count"), emptyEl=$("empty"),
+      searchEl=$("faq-search"), toggleAll=$("toggle-all");
+
+  function strip(html){ var d=document.createElement("div"); d.innerHTML=html||""; return d.textContent||""; }
+  function esc(s){ return s.replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];}); }
+  function highlight(text, words){
+    var out=esc(text);
+    words.forEach(function(w){
+      if(w.length<2) return;
+      var re=new RegExp("("+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","gi");
+      out=out.replace(re,"<mark>$1</mark>");
+    });
+    return out;
+  }
+  FAQS.forEach(function(f){ f.hay=(f.q+" "+strip(f.a)+" "+themeLabel[f.t]).toLowerCase(); });
+
+  // Theme chips
+  THEMES.forEach(function(t){
+    var n = t.id==="all" ? FAQS.length : FAQS.filter(function(f){return f.t===t.id;}).length;
+    var b=document.createElement("button");
+    b.type="button"; b.className="chip"; b.dataset.theme=t.id;
+    b.setAttribute("aria-pressed", t.id===state.theme ? "true":"false");
+    b.innerHTML=esc(t.label)+' <span class="n">'+n+'</span>';
+    b.addEventListener("click",function(){ state.theme=t.id; render(); });
+    themesEl.appendChild(b);
+  });
+
+  function buildItem(f, words){
+    var li=document.createElement("li"); li.className="item"; li.id="faq-"+f.id;
+    var btn=document.createElement("button");
+    btn.type="button"; btn.className="q"; btn.setAttribute("aria-expanded","false");
+    btn.setAttribute("aria-controls","ans-"+f.id);
+    btn.innerHTML='<span>'+highlight(f.q,words)+'</span><br><span class="tag">'+esc(themeLabel[f.t])+'</span>';
+    var ans=document.createElement("div");
+    ans.className="a"; ans.id="ans-"+f.id; ans.hidden=true;
+    ans.innerHTML=(f.a||PENDING)+'<button type="button" class="copy">Copy link to this question</button>';
+    btn.addEventListener("click",function(){
+      var open=btn.getAttribute("aria-expanded")==="true";
+      btn.setAttribute("aria-expanded",String(!open)); ans.hidden=open; syncToggle();
+    });
+    ans.querySelector(".copy").addEventListener("click",function(e){
+      var url=location.href.split("#")[0]+"#faq-"+f.id, b=e.currentTarget;
+      try{ navigator.clipboard.writeText(url).then(function(){ b.textContent="Link copied"; setTimeout(function(){b.textContent="Copy link to this question";},2000); }); }
+      catch(err){ location.hash="faq-"+f.id; }
+    });
+    li.appendChild(btn); li.appendChild(ans);
+    return li;
+  }
+
+  function render(){
+    var words=state.query.toLowerCase().split(/\s+/).filter(Boolean);
+    var shown=FAQS.filter(function(f){
+      if(state.theme!=="all" && f.t!==state.theme) return false;
+      return words.every(function(w){ return f.hay.indexOf(w)>-1; });
+    });
+    list.innerHTML="";
+    shown.forEach(function(f){ list.appendChild(buildItem(f,words)); });
+    themesEl.querySelectorAll(".chip").forEach(function(c){
+      c.setAttribute("aria-pressed", c.dataset.theme===state.theme ? "true":"false");
+    });
+    countEl.textContent = shown.length===1 ? "1 question" : shown.length+" questions";
+    emptyEl.hidden = shown.length>0;
+    toggleAll.hidden = shown.length===0;
+    syncToggle();
+  }
+
+  function syncToggle(){
+    var btns=list.querySelectorAll(".q"), allOpen=btns.length>0;
+    btns.forEach(function(b){ if(b.getAttribute("aria-expanded")!=="true") allOpen=false; });
+    toggleAll.textContent = allOpen ? "Collapse all" : "Expand all";
+  }
+  toggleAll.addEventListener("click",function(){
+    var open = toggleAll.textContent==="Expand all";
+    list.querySelectorAll(".item").forEach(function(li){
+      li.querySelector(".q").setAttribute("aria-expanded",String(open));
+      li.querySelector(".a").hidden=!open;
+    });
+    syncToggle();
+  });
+
+  var timer;
+  searchEl.addEventListener("input",function(){
+    clearTimeout(timer);
+    timer=setTimeout(function(){ state.query=searchEl.value.trim(); render(); },120);
+  });
+
+  // Ask panel open/close
+  var askOpen=$("ask-open"), askForm=$("ask-form");
+  function setAsk(open){
+    askForm.hidden=!open; askOpen.hidden=open;
+    askOpen.setAttribute("aria-expanded",String(open));
+    if(open) $("ask-q").focus(); else askOpen.focus();
+  }
+  askOpen.addEventListener("click",function(){ setAsk(true); });
+  $("ask-cancel").addEventListener("click",function(){ setAsk(false); });
+
+  // No results: carry the search text into the ask form
+  $("ask-from-empty").addEventListener("click",function(){
+    var q=$("ask-q"); if(!q.value) q.value=searchEl.value.trim();
+    $("ask").scrollIntoView({behavior:"smooth",block:"start"}); setAsk(true);
+  });
+
+  // Deep link: #faq-<id> opens that question
+  function openFromHash(){
+    var h=location.hash.replace("#","");
+    if(h.indexOf("faq-")!==0) return;
+    state.theme="all"; state.query=""; searchEl.value=""; render();
+    var li=document.getElementById(h); if(!li) return;
+    li.querySelector(".q").setAttribute("aria-expanded","true");
+    li.querySelector(".a").hidden=false; syncToggle();
+    li.scrollIntoView({block:"start"}); li.querySelector(".q").focus();
+  }
+  window.addEventListener("hashchange",openFromHash);
+
+  // Ask form
+  var lastBody="";
+  $("ask-copy").addEventListener("click",function(e){
+    var b=e.currentTarget;
+    try{ navigator.clipboard.writeText(lastBody).then(function(){ b.textContent="Copied"; setTimeout(function(){ b.textContent="Copy my question"; },2000); }); }catch(x){}
+  });
+  $("ask-form").addEventListener("submit",function(e){
+    e.preventDefault();
+    var q=$("ask-q").value.trim(), name=$("ask-name").value.trim(), email=$("ask-email").value.trim();
+    var err=$("ask-error"), thanks=$("ask-thanks");
+    err.hidden=true; thanks.hidden=true;
+    if(!q){ err.textContent="Enter your question before sending."; err.hidden=false; $("ask-q").focus(); return; }
+    if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ err.textContent="Check the email address format, or leave it blank."; err.hidden=false; $("ask-email").focus(); return; }
+
+    if(CONFIG.formEndpoint){
+      var fd=new FormData(); fd.append("question",q); fd.append("name",name); fd.append("email",email);
+      fetch(CONFIG.formEndpoint,{method:"POST",body:fd,headers:{"Accept":"application/json"}})
+        .then(function(r){ if(!r.ok) throw new Error(r.status); 
+          thanks.textContent="Thanks. Your question was sent."; thanks.hidden=false; e.target.reset(); })
+        .catch(function(){ err.textContent="Your question didn't send. Try again, or email "+CONFIG.askEmail+"."; err.hidden=false; });
+      return;
+    }
+    var body="Question:\n"+q+"\n\nName: "+(name||"(not given)")+"\nReply to: "+(email||"(not given)");
+    var mailto="mailto:"+CONFIG.askEmail+"?subject="+encodeURIComponent(CONFIG.emailSubject)+"&body="+encodeURIComponent(body);
+    // Open the mail app from the top-level window so it also works when this page is inside an iframe
+    try{
+      var a=document.createElement("a"); a.href=mailto; a.target="_top"; a.rel="noopener";
+      document.body.appendChild(a); a.click(); a.remove();
+    }catch(x){}
+    var addr=$("ask-addr"); addr.textContent=CONFIG.askEmail; addr.href=mailto; addr.target="_top";
+    lastBody=body;
+    thanks.hidden=false;
+  });
+
+  render();
+  openFromHash();
+
+  // When embedded in an iframe, tell the parent page how tall this page is
+  if(window.parent!==window && "ResizeObserver" in window){
+    var lastH=0;
+    new ResizeObserver(function(){
+      var h=document.documentElement.scrollHeight;
+      if(h!==lastH){ lastH=h; window.parent.postMessage({tcfaqHeight:h},"*"); }
+    }).observe(document.documentElement);
+  }
+})();
+</script>
+</body>
+</html>
