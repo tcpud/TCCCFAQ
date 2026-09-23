@@ -131,6 +131,9 @@ body{margin:0;background:var(--page);color:var(--ink)}
 .tcfaq .error{color:#B3261E;font-weight:600;margin:.5rem 0 0}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tcfaq .error{color:#FFB4AB}}
 .tcfaq .thanks{margin:.75rem 0 0}
+.tcfaq .thanks.sent{font-weight:600;color:var(--pine)}
+.tcfaq .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.tcfaq .send:disabled{opacity:.6;cursor:default}
 .tcfaq .thanks p{margin:0 0 .35rem;font-weight:600;color:var(--pine)}
 .tcfaq .thanks p.fallback{font-weight:400;color:var(--ink)}
 .tcfaq .thanks a{color:var(--lake-2);font-weight:600}
@@ -148,7 +151,7 @@ body{margin:0;background:var(--page);color:var(--ink)}
     <div class="ask-head">
       <div>
         <h2 id="ask-title">Don't see your question?</h2>
-        <p class="sub">Send it to us and we'll respond as soon as we can.</p>
+        <p class="sub">Send it to us. We read every question and update this page as answers become available.</p>
       </div>
       <button type="button" class="send" id="ask-open" aria-expanded="false" aria-controls="ask-form">Ask a question</button>
     </div>
@@ -167,9 +170,14 @@ body{margin:0;background:var(--page);color:var(--ink)}
           <input id="ask-email" name="email" type="email" autocomplete="email">
         </div>
       </div>
+      <div class="hp" aria-hidden="true">
+        <label for="ask-website">Leave this field empty</label>
+        <input id="ask-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
       <button type="submit" class="send">Send question</button>
       <button type="button" class="linkbtn cancel" id="ask-cancel">Cancel</button>
       <p class="error" id="ask-error" hidden></p>
+      <p class="thanks sent" id="ask-sent" role="status" hidden>Thanks! Your question was sent. We'll use it to update this page.</p>
       <div class="thanks" id="ask-thanks" hidden>
         <p>Your email app should open with your question filled in. Press send there to finish.</p>
         <p class="fallback">If it didn't open, email your question to <a id="ask-addr" href="#"></a>. <button type="button" class="linkbtn" id="ask-copy">Copy my question</button></p>
@@ -202,10 +210,10 @@ body{margin:0;background:var(--page);color:var(--ink)}
 (function(){
   /* ============ SETTINGS: edit these ============ */
   var CONFIG = {
-    // Where "Send question" goes. If formEndpoint is set, the form POSTs there
-    // (e.g. a Drupal Webform, Formspree, or Power Automate HTTP trigger).
-    // Otherwise it opens the visitor's email app addressed to askEmail.
-    formEndpoint: "",
+    // Paste the Power Automate "HTTP POST URL" into formEndpoint.
+    // When it's set, questions send in the page with no mail app needed.
+    // When it's blank, the form falls back to opening the visitor's email app.
+    formEndpoint: "https://default3a5cdc1be501475da24830cd5b9a02.cb.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/17/workflows/65bee8af6ef1462dafcd4d54d6e53988/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=MVbE5HLnX_VqiWMV7d2lRNNzM3uFfcLXUSKqZbh4LIQ",
     askEmail: "info@tcpud.org",
     emailSubject: "Recreation facility question"
   };
@@ -223,12 +231,10 @@ body{margin:0;background:var(--page);color:var(--ink)}
   var FAQS = [
     {id:"use-fee", t:"access", q:"Would there be a separate membership or use fee on top of the parcel tax to actually access the facility?",
      a:"<p>Yes. The proposed voter-approved tax measure would provide funding for construction of the facility; however, user fees would still be necessary to help offset ongoing operating and maintenance costs. The estimated fee structure would be determined as part of continued planning efforts.</p>"},
-    {id:"lap-pool", t:"features", q:"Would the aquatic facility include a dedicated lap pool, and how many lanes?",
-     a:"<p>The dedicated aquatic facility would include a six-lane lap pool and a 2,500 square foot activity pool. The current combined gymnasium and aquatic facility concept does not include a lap pool.</p>"},
     {id:"non-residents", t:"access", q:"Would non-residents, visitors, or tourists be able to use the facility, and would they pay a different rate?",
      a:"<p>The facility would be open to all members of the public. It’s likely that access fees for TCPUD residents would be lower than for non-residents, as is consistent with other TCPUD Parks &amp; Recreation facilities and programs.</p>"},
     {id:"meeting-space", t:"features", q:"Would the facility include community/multi-purpose space for classes, meetings, or events?",
-     a:"<p>Yes. All three proposed concepts include classroom/meeting space.</p>"},
+     a:"<p>All three proposed concepts include some form of classroom/meeting space but exact details will be determined if/when a facility moves forward to the planning and design process.</p>"},
     {id:"other-funding", t:"cost", q:"Have alternative funding sources been considered, such as TOT/TBID (tourist tax) revenue, grants, bond measures, or private donations?",
      a:"<p>TCPUD continuously seeks outside sources of funding for all projects. However, at this early conceptual stage, we cannot plan for or rely on these sources of funding for future construction.</p>"},
     {id:"rideout", t:"planning", q:"Has renovating or expanding the existing Rideout gymnasium been considered instead of new construction?",
@@ -239,14 +245,8 @@ body{margin:0;background:var(--page);color:var(--ink)}
      a:"<p>A voter-approved parcel tax would need to be approved by a two-thirds majority of registered voters within TCPUD’s service area in both El Dorado and Placer County. We are still in the very early planning stages, and there is no estimate of if/when this project would go to a ballot.</p>"},
     {id:"traffic", t:"planning", q:"How would this project affect traffic and the Highway 89/Granlibakken intersection?",
      a:"<p>Traffic impacts would be studied and addressed if/when any of the three facility concepts move forward to design/construction.</p>"},
-    {id:"pickleball", t:"features", q:"Would there be dedicated indoor pickleball courts?",
-     a:"<p>The exact layout of court space has not yet been determined. However, we expect that court space will be configurable to be shared between user groups.</p>"},
     {id:"second-home", t:"voting", q:"As a second homeowner, would I be able to vote on this measure even though I'd be paying the tax?",
      a:"<p>Those who are registered to vote within TCPUD’s service area will be able to vote on the measure.</p>"},
-    {id:"combined-no-lap", t:"features", q:"Why does the \"combined\" concept appear to drop the lap pool in favor of a leisure-only pool?",
-     a:null},
-    {id:"fitness", t:"features", q:"Would a fitness area with free weights and cardio machines be included?",
-     a:null},
     {id:"operating-costs", t:"cost", q:"What are the projected ongoing maintenance and staffing costs, beyond construction?",
      a:"<p>The current estimates for annual operating costs are $365,000 for the Indoor Gymnasium, $1,030,000 for the Indoor Aquatic Facility, or $935,000 for the Combined Facility.</p>"},
     {id:"nursery", t:"planning", q:"What happens to the plant nursery currently operating on the proposed site?",
@@ -259,8 +259,6 @@ body{margin:0;background:var(--page);color:var(--ink)}
      a:"<p>The exact structure of a voter-approved tax has not yet been determined. Specific details will be developed if/when one of the facility concepts moves forward to planning/design.</p>"},
     {id:"ice-rink", t:"features", q:"Is an ice rink or hockey facility being considered as part of any concept?",
      a:"<p>No, an ice facility has not been considered in any of the proposed concepts.</p>"},
-    {id:"youth", t:"features", q:"Would childcare, a children's play area, or youth programming be part of the facility?",
-     a:"<p>Specific programming options have not yet been determined for any of the proposed facility concepts. However, TCPUD would likely conduct some form of youth programming on-site at any of the proposed facilities.</p>"},
     {id:"tax-amount", t:"cost", q:"How much would the parcel tax cost per property, and how was that amount calculated?",
      a:"<p>The specific voter-approved parcel tax amount varies by facility type. These initial estimates were calculated based on initial construction cost estimates. These current yearly estimates are $196/parcel for the Indoor Gymnasium, $351/parcel for the Indoor Aquatic Facility, or $424/parcel for the Combine Facility. These are estimates only and are subject to change.</p>"},
     {id:"indoor-outdoor", t:"features", q:"Would the pool be indoor, outdoor, or a combination of both?",
@@ -271,8 +269,6 @@ body{margin:0;background:var(--page);color:var(--ink)}
      a:"<p>TCPUD continuously seeks outside sources of funding for all projects. However, at this early conceptual stage, we cannot plan for or rely on these sources of funding for future construction.</p>"},
     {id:"renters", t:"cost", q:"Would renters be affected by the parcel tax, and if so, how?",
      a:"<p>Property owners would pay the voter-approved parcel tax.</p>"},
-    {id:"chlorine", t:"features", q:"Would the pool use chlorine or a saline/saltwater system?",
-     a:"<p>Aquatic facilities would likely use chlorine disinfection.</p>"},
     {id:"timeline", t:"planning", q:"What is the timeline for design, funding, and construction if this moves forward?",
      a:"<p>Depending on the timing of a voter-approved parcel tax ballot measure, completion of the facility would not be expected until 2033 at the earliest (source: Board workshop 1/16/26)</p>"}
   ];
@@ -405,17 +401,31 @@ body{margin:0;background:var(--page);color:var(--ink)}
   $("ask-form").addEventListener("submit",function(e){
     e.preventDefault();
     var q=$("ask-q").value.trim(), name=$("ask-name").value.trim(), email=$("ask-email").value.trim();
-    var err=$("ask-error"), thanks=$("ask-thanks");
-    err.hidden=true; thanks.hidden=true;
+    var err=$("ask-error"), thanks=$("ask-thanks"), sent=$("ask-sent");
+    err.hidden=true; thanks.hidden=true; sent.hidden=true;
     if(!q){ err.textContent="Enter your question before sending."; err.hidden=false; $("ask-q").focus(); return; }
     if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ err.textContent="Check the email address format, or leave it blank."; err.hidden=false; $("ask-email").focus(); return; }
 
+    // Honeypot: real people never see or fill this field, bots usually do
+    if($("ask-website").value){ sent.hidden=false; e.target.reset(); return; }
+
     if(CONFIG.formEndpoint){
-      var fd=new FormData(); fd.append("question",q); fd.append("name",name); fd.append("email",email);
-      fetch(CONFIG.formEndpoint,{method:"POST",body:fd,headers:{"Accept":"application/json"}})
-        .then(function(r){ if(!r.ok) throw new Error(r.status); 
-          thanks.textContent="Thanks. Your question was sent."; thanks.hidden=false; e.target.reset(); })
-        .catch(function(){ err.textContent="Your question didn't send. Try again, or email "+CONFIG.askEmail+"."; err.hidden=false; });
+      var btn=e.target.querySelector('button[type="submit"]');
+      btn.disabled=true; btn.textContent="Sending...";
+      fetch(CONFIG.formEndpoint,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({question:q,name:name,email:email,page:location.href})
+      })
+        .then(function(r){
+          if(!r.ok) throw new Error(r.status);
+          sent.hidden=false; e.target.reset();
+        })
+        .catch(function(){
+          err.textContent="Your question didn't send. Try again, or email it to "+CONFIG.askEmail+".";
+          err.hidden=false;
+        })
+        .then(function(){ btn.disabled=false; btn.textContent="Send question"; });
       return;
     }
     var body="Question:\n"+q+"\n\nName: "+(name||"(not given)")+"\nReply to: "+(email||"(not given)");
