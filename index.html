@@ -48,7 +48,9 @@ body{margin:0;background:var(--page);color:var(--ink)}
 }
 .tcfaq *:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
 .tcfaq h1{font-size:clamp(1.75rem,4.5vw,2.5rem);line-height:1.15;font-weight:800;color:var(--lake);margin:0 0 .75rem;letter-spacing:-0.01em}
-.tcfaq .intro{margin:0 0 2rem;color:var(--granite);max-width:38rem}
+.tcfaq .intro{margin:0 0 1rem;color:var(--granite);max-width:38rem}
+.tcfaq .intro.note{margin-bottom:2rem;padding:.75rem 1rem;border-left:4px solid var(--lake-2);background:var(--panel);color:var(--ink);border-radius:0 8px 8px 0}
+.tcfaq .intro.note strong{color:var(--lake)}
 
 /* Search */
 .tcfaq .search{position:relative;margin-bottom:1rem}
@@ -145,9 +147,11 @@ body{margin:0;background:var(--page);color:var(--ink)}
 <body>
 <main class="tcfaq" id="tcfaq">
   <h1>Questions about the proposed recreation facility</h1>
-  <p class="intro">TCPUD is exploring three possible recreation facility concepts: an indoor gymnasium, an indoor aquatic facility, and a combined facility. This is an early planning effort, and many specific details, such as court layouts, the number of pool lanes, and programming, have not been determined. Those details would be developed only if a concept moves forward into design.</p>
+  <p class="intro">TCPUD is evaluating the future use of the Tahoe City Community Center (TCCC) property and its potential to meet community recreation needs. As part of the feasibility study, TCPUD is exploring three recreation facility concepts, associated costs, potential funding considerations, and community priorities.</p>
 
-<p class ="intro">Right now, we want to hear from the community. Your feedback will help the TCPUD Board of Directors decide which facility, if any, to pursue. Below are answers to the questions we've heard most often.</p>
+  <p class="intro">These FAQs address many of the responses submitted in the TCCC community survey and will be updated as the feasibility study progresses and additional information becomes available.</p>
+
+  <p class="intro note"><strong>Note:</strong> Specific amenities, programming spaces, equipment, or other design features for each facility concept have not been determined. The concepts being evaluated are intended to establish the general type, size, and potential cost of a future facility. If a concept moves forward, these details would be developed through future planning and design, informed by community needs, operational considerations, and available funding.</p>
 
   <section class="ask" id="ask" aria-labelledby="ask-title">
     <div class="ask-head">
@@ -231,48 +235,48 @@ body{margin:0;background:var(--page);color:var(--ink)}
 
   /* answer: HTML string, or null for "answer coming soon" */
   var FAQS = [
-    {id:"use-fee", t:"access", q:"Would there be a separate membership or use fee on top of the parcel tax to actually access the facility?",
-     a:"<p>Yes. The proposed voter-approved tax measure would provide funding for construction of the facility; however, user fees would still be necessary to help offset ongoing operating and maintenance costs. The estimated fee structure would be determined as part of continued planning efforts.</p>"},
+    {id:"use-fee", t:"access", q:"Would there be a separate membership or use fee in addition to the voter-approved parcel tax to access the facility?",
+     a:"<p>The proposed voter-approved parcel tax would provide funding for construction of the facility; however, we also anticipate there will be user fees to help offset ongoing operating and maintenance costs. The estimated fee structure has not been determined and would be developed as part of future planning efforts.</p>"},
     {id:"non-residents", t:"access", q:"Would non-residents, visitors, or tourists be able to use the facility, and would they pay a different rate?",
-     a:"<p>The facility would be open to all members of the public. It’s likely that access fees for TCPUD residents would be lower than for non-residents, as is consistent with other TCPUD Parks &amp; Recreation facilities and programs.</p>"},
-    {id:"meeting-space", t:"features", q:"Would the facility include community/multi-purpose space for classes, meetings, or events?",
-     a:"<p>All three proposed concepts include some form of classroom/meeting space but exact details will be determined if/when a facility moves forward to the planning and design process.</p>"},
+     a:"<p>The facility would be open to all members of the public. A fee structure has not been developed, but TCPUD currently offers lower resident rates for its Parks &amp; Recreation facilities and programs, and a similar approach would be considered for a future facility.</p>"},
+    {id:"meeting-space", t:"features", q:"Would the facility include community/multi-purpose space for programs, meetings, or events?",
+     a:"<p>All three concepts include some form of multi-purpose room or meeting space. The size, configuration, and specific uses of these spaces would be defined if a facility moves forward into design.</p>"},
     {id:"other-funding", t:"cost", q:"Have alternative funding sources been considered, such as TOT/TBID (tourist tax) revenue, grants, bond measures, or private donations?",
-     a:"<p>TCPUD continuously seeks outside sources of funding for all projects. However, at this early conceptual stage, we cannot plan for or rely on these sources of funding for future construction.</p>"},
-    {id:"rideout", t:"planning", q:"Has renovating or expanding the existing Rideout gymnasium been considered instead of new construction?",
-     a:"<p>Rideout is owned by Tahoe Truckee Unified School District, not TCPUD. As such, TCPUD has no authority or direction over the use of the Rideout site.</p>"},
+     a:"<p>TCPUD routinely seeks outside funding sources to help reduce the cost of capital projects. However, at this early conceptual stage, no outside funding has been secured for construction, and TCPUD cannot assume other funding sources would be available. We will continue to evaluate outside funding opportunities if the project moves forward.</p>"},
+    {id:"rideout", t:"planning", q:"Has renovating or expanding the existing Rideout School gymnasium been considered instead of new construction?",
+     a:"<p>Rideout is owned and managed by Tahoe Truckee Unified School District (TTUSD), not TCPUD. Any changes to or expansion of the Rideout facility would require TTUSD involvement and coordination.</p>"},
     {id:"dollar-hill", t:"planning", q:"How does this proposal differ from the earlier Dollar Hill facility proposal that didn't move forward?",
-     a:"<p>The Dollar Hill facility was proposed as a joint facility with North Tahoe Public Utility District. The effort concluded in late 2024, when the TCPUD and NTPUD Board of Directors determined that, based on voter polling results and projected costs of the project, it was not feasible to move forward with a special tax measure to fund the facility. Learn more about that joint effort here: <a href=\"https://northtahoerec.org/\" target=\"_blank\" rel=\"noopener\">https://northtahoerec.org/</a></p>"},
-    {id:"how-vote", t:"voting", q:"How and when would residents actually vote on this?",
-     a:"<p>A voter-approved parcel tax would need to be approved by a two-thirds majority of registered voters within TCPUD’s service area in both El Dorado and Placer County. We are still in the very early planning stages, and there is no estimate of if/when this project would go to a ballot.</p>"},
+     a:"<p>The Dollar Hill facility was proposed as a joint active recreation facility with North Tahoe Public Utility District (NTPUD). The effort concluded in late 2024, when the TCPUD and NTPUD Boards of Directors determined, based on voter polling results and projected costs, that it was not feasible to move forward with a special tax measure to fund the facility. The current feasibility study is focused specifically on TCPUD’s TCCC property and is evaluating different facility concepts on a smaller scale.</p>"},
+    {id:"how-vote", t:"voting", q:"How and when would residents vote on this?",
+     a:"<p>Under current California law, a new voter-approved parcel tax would require approval by at least two-thirds majority of registered voters within TCPUD’s service area in both El Dorado and Placer County. No decision has been made to place a measure on the ballot, and there is currently no proposed election date.</p>"},
     {id:"traffic", t:"planning", q:"How would this project affect traffic and the Highway 89/Granlibakken intersection?",
-     a:"<p>Traffic impacts would be studied and addressed if/when any of the three facility concepts move forward to design/construction.</p>"},
-    {id:"second-home", t:"voting", q:"As a second homeowner, would I be able to vote on this measure even though I'd be paying the tax?",
-     a:"<p>Those who are registered to vote within TCPUD’s service area will be able to vote on the measure.</p>"},
+     a:"<p>Potential traffic and circulation impacts would be evaluated as part of future environmental review and design if a facility concept moves forward.</p>"},
+    {id:"second-home", t:"voting", q:"As a second homeowner, would I be able to vote on this measure since I'd be paying the tax?",
+     a:"<p>Eligibility to vote is based on voter registration, not property ownership. Property owners who are not registered to vote within TCPUD’s service area would not vote on the measure, even though their property could be subject to the parcel tax.</p>"},
     {id:"operating-costs", t:"cost", q:"What are the projected ongoing maintenance and staffing costs, beyond construction?",
-     a:"<p>The current estimates for annual operating costs are $365,000 for the Indoor Gymnasium, $1,030,000 for the Indoor Aquatic Facility, or $935,000 for the Combined Facility.</p>"},
-    {id:"nursery", t:"planning", q:"What happens to the plant nursery currently operating on the proposed site?",
-     a:"<p>The nursery currently leases a portion of the site for its operations. The future of that lease would be evaluated if the project moves forward into design and construction.</p>"},
+     a:"<p>Current planning-level estimates for annual operating costs are approximately $365,000 for the Indoor Gymnasium, $1.03 million for the Indoor Aquatic Facility, or $935,000 for the Combined Facility. These are preliminary estimates and would be refined as facility design, programming, staffing, hours of operation, and anticipated revenues are further developed.</p>"},
+    {id:"nursery", t:"planning", q:"What happens to the Tahoe Tree Company nursery currently operating on the proposed site?",
+     a:"<p>The nursery currently leases a portion of the TCCC property. The future use of that portion of the site, including the nursery lease, would be evaluated if a facility moves forward into design and construction.</p>"},
     {id:"reduced-rates", t:"access", q:"Are there exemptions or reduced rates planned for seniors, low-income residents, or those on fixed incomes?",
-     a:"<p>The exact rate structure for any of the proposed facilities will be developed as planning efforts continue.</p>"},
+     a:"<p>Potential exemptions associated with a voter approved parcel tax, as well as reduced or discounted facility user fees, would be evaluated as planning progresses.</p>"},
     {id:"incorporation", t:"planning", q:"Would this project be affected by the North Lake Tahoe incorporation effort?",
-     a:"<p>Incorporation will not change how TCPUD provides its water, sewer, or parks and recreation services. However, there is not sufficient information at this time to understand how incorporation efforts may impact outside funding sources.</p>"},
+     a:"<p>TCPUD would continue to provide water, sewer, and parks and recreation services as an independent special district if a new municipality were formed. At this stage, there is not enough information to determine whether incorporation could affect potential outside funding sources or other aspects of the project.</p>"},
     {id:"sliding-scale", t:"cost", q:"Could the tax be structured on a sliding scale based on property value instead of a flat rate per parcel?",
-     a:"<p>The exact structure of a voter-approved tax has not yet been determined. Specific details will be developed if/when one of the facility concepts moves forward to planning/design.</p>"},
+     a:"<p>The structure of any potential voter-approved tax has not yet been determined. Funding options and the method for allocating any proposed tax among properties would be evaluated as part of future financial and legal analysis before a measure could be considered for the ballot.</p>"},
     {id:"ice-rink", t:"features", q:"Is an ice rink or hockey facility being considered as part of any concept?",
-     a:"<p>No, an ice facility has not been considered in any of the proposed concepts.</p>"},
+     a:"<p>No, an ice rink has not been considered in any of the proposed concepts.</p>"},
     {id:"tax-amount", t:"cost", q:"How much would the parcel tax cost per property, and how was that amount calculated?",
-     a:"<p>The specific voter-approved parcel tax amount varies by facility type. These initial estimates were calculated based on initial construction cost estimates. These current yearly estimates are $196/parcel for the Indoor Gymnasium, $351/parcel for the Indoor Aquatic Facility, or $424/parcel for the Combine Facility. These are estimates only and are subject to change.</p>"},
+     a:"<p>Current planning-level estimates vary by facility type: approximately $196 per parcel annually for the Indoor Gymnasium, $351 for the Indoor Aquatic Facility, and $424 for the Combined Facility. These estimates are based on preliminary construction costs and financing assumptions and are intended for feasibility planning purposes only. The actual amount of any future voter-approved parcel tax could change as project costs, available funding, financing, and other assumptions are refined.</p>"},
     {id:"indoor-outdoor", t:"features", q:"Would the pool be indoor, outdoor, or a combination of both?",
-     a:"<p>Aquatic facilities would be indoors.</p>"},
+     a:"<p>Under the concepts currently being evaluated, the aquatic facilities would be indoors.</p>"},
     {id:"over-budget", t:"cost", q:"What happens if the project goes over budget — would that fall on taxpayers?",
-     a:"<p>Any project costs not covered by a voter-approved parcel tax would come from TCPUD’s General Fund. The General Fund is primarily funded by existing TCPUD property tax revenue and parks/recreation user fees.</p>"},
+     a:"<p>A detailed project budget, funding plan, and contingencies would be established before construction. If project costs were to exceed the approved budget, the Board would need to evaluate available options, which could include modifying the project scope, identifying additional funding, or considering the use of available District funds.</p>"},
     {id:"capital-campaign", t:"cost", q:"Would a capital campaign or donor-recognition program be considered to offset construction costs?",
-     a:"<p>TCPUD continuously seeks outside sources of funding for all projects. However, at this early conceptual stage, we cannot plan for or rely on these sources of funding for future construction.</p>"},
+     a:"<p>A capital campaign, private donations, sponsorships, or donor-recognition opportunities could be explored as potential supplemental funding sources if the project moves forward. No assumptions regarding private fundraising are currently included in the project's funding estimates.</p>"},
     {id:"renters", t:"cost", q:"Would renters be affected by the parcel tax, and if so, how?",
-     a:"<p>Property owners would pay the voter-approved parcel tax.</p>"},
+     a:"<p>The voter-approved parcel tax would be levied on the property, so the legal obligation to pay the tax would rest with the property owner. How or whether the cost could affect an individual renter would depend on the terms of the rental agreement.</p>"},
     {id:"timeline", t:"planning", q:"What is the timeline for design, funding, and construction if this moves forward?",
-     a:"<p>Depending on the timing of a voter-approved parcel tax ballot measure, completion of the facility would not be expected until 2033 at the earliest (source: Board workshop 1/16/26)</p>"}
+     a:"<p>The timeline depends on several future steps, including further planning and design, environmental review, funding, and the timing and outcome of any voter-approved parcel tax measure. Based on current planning assumptions, completion of the facility would not be expected before 2033.</p>"}
   ];
 
   var PENDING = "<p class=\"pending\">We're working on an answer to this question. Check back soon.</p>";
